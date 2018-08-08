@@ -2,11 +2,11 @@ package klasa;
 
 import java.sql.SQLException;
 
-public class BazaMain extends Database_init {
+public class BazaMain extends DatabaseInit {
 
 	public static void main(String[] args) {
 
-		Database_init db = new Database_init();
+		DatabaseInit db = new DatabaseInit();
 		
 		db.dbConnect();
 

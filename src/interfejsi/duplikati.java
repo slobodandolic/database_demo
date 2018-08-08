@@ -1,6 +1,6 @@
 package interfejsi;
 
-public interface duplikati {
+public interface Duplikati {
 	
 	void checkDuplicates ();
 

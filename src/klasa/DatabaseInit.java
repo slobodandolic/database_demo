@@ -14,9 +14,9 @@ import java.util.Properties;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Database_init implements interfejsi.nagrada, interfejsi.duplikati {
+public class DatabaseInit implements interfejsi.Nagrada, interfejsi.Duplikati {
 
-	public Database_init() {
+	public DatabaseInit() {
 		super();
 	}
 
@@ -73,8 +73,6 @@ public class Database_init implements interfejsi.nagrada, interfejsi.duplikati {
 	}
 
 	public void fillDbase() {
-
-
 
 		ArrayList<String> listaKodova = new ArrayList<>();
 

@@ -1,6 +1,6 @@
 package interfejsi;
 
-public interface nagrada {
+public interface Nagrada {
 	
 	void checkAward();
 
