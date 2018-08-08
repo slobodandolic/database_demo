@@ -184,9 +184,6 @@ public class DatabaseInit implements interfejsi.Nagrada, interfejsi.Duplikati {
 
 	public void update() {
 
-
-
-
 		try {
 
 			statement = connect.createStatement();
