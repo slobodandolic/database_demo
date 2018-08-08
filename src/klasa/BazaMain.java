@@ -15,7 +15,7 @@ public class BazaMain extends DatabaseInit {
 		//db.checkAward();
 
 		//System.out.println("Prazni kodovi se nalaze na id mestima: " + db.ponovljeniKodovi.toString());
-		//System.out.println("Duplikati: ");
+		
 		//db.checkDuplicates();
 		
 		//db.update();
