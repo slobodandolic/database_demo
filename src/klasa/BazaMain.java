@@ -1,0 +1,46 @@
+package klasa;
+
+import java.sql.SQLException;
+
+public class BazaMain extends Database_init {
+
+	public static void main(String[] args) {
+
+		Database_init db = new Database_init();
+		
+		
+		
+		db.dbConnect();
+
+		db.fillDbase();
+		
+		//db.checkAward();
+
+		//System.out.println("Prazni kodovi se nalaze na id mestima: " + db.ponovljeniKodovi.toString());
+		//System.out.println("Duplikati: ");
+		//db.checkDuplicates();
+		
+		//db.update();
+		
+		//db.select();
+		
+		//db.delete();
+		
+		//db.insert();
+		
+		
+		
+		
+		try {
+			db.connect.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		db.sc.close();
+	
+	
+
+	}
+
+}
