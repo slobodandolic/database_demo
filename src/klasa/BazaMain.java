@@ -8,8 +8,6 @@ public class BazaMain extends Database_init {
 
 		Database_init db = new Database_init();
 		
-		
-		
 		db.dbConnect();
 
 		db.fillDbase();
