@@ -80,6 +80,7 @@ public class DatabaseInit implements interfejsi.DatabaseCheckAward, interfejsi.D
 	}
 
 	public void setConnect(Connection connect) {
+
 		this.connect = connect;
 	}
 
