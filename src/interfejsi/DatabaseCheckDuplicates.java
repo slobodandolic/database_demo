@@ -1,6 +1,6 @@
 package interfejsi;
 
-public interface Duplikati {
+public interface DatabaseCheckDuplicates {
 	
 	void checkDuplicates ();
 

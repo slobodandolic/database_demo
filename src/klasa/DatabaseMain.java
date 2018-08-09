@@ -2,7 +2,7 @@ package klasa;
 
 import java.sql.SQLException;
 
-public class BazaMain extends DatabaseInit {
+public class DatabaseMain extends DatabaseInit {
 
 	public static void main(String[] args) {
 
@@ -25,7 +25,6 @@ public class BazaMain extends DatabaseInit {
 		//db.delete();
 		
 		//db.insert();
-		
 		
 		
 		

@@ -14,7 +14,7 @@ import java.util.Properties;
 import java.util.Random;
 import java.util.Scanner;
 
-public class DatabaseInit implements interfejsi.Nagrada, interfejsi.Duplikati {
+public class DatabaseInit implements interfejsi.DatabaseCheckAward, interfejsi.DatabaseCheckDuplicates, interfejsi.DatabaseCrud {
 
 	public DatabaseInit() {
 		super();
@@ -27,9 +27,9 @@ public class DatabaseInit implements interfejsi.Nagrada, interfejsi.Duplikati {
 	Scanner sc = new Scanner(System.in);
 
 	Properties prop = readConfig();
-	String dbase = prop.getProperty("database");
-	String dbpass = prop.getProperty("dbpassword");
-	String dbuser = prop.getProperty("dbuser");
+	public String dbase = prop.getProperty("database");
+	public String dbpass = prop.getProperty("dbpassword");
+	public String dbuser = prop.getProperty("dbuser");
 
 	ArrayList<Integer> ponovljeniKodovi = new ArrayList<>();
 
@@ -63,6 +63,8 @@ public class DatabaseInit implements interfejsi.Nagrada, interfejsi.Duplikati {
 
 	public void dbConnect() {
 
+
+
 		try {
 			connect = DriverManager.getConnection(dbase, dbuser, dbpass);
 			System.out.println("Connection succesfull");
@@ -72,11 +74,23 @@ public class DatabaseInit implements interfejsi.Nagrada, interfejsi.Duplikati {
 		}
 	}
 
+	public Connection getConnect() {
+
+		return connect;
+	}
+
+	public void setConnect(Connection connect) {
+		this.connect = connect;
+	}
+
 	public void fillDbase() {
+
+
+
 
 		ArrayList<String> listaKodova = new ArrayList<>();
 
-		ArrayList<Integer> lista = rendomLista();
+		ArrayList<Integer> lista = randomLista();
 
 		for (int i = 0; i < 1000; i++) {
 
@@ -119,6 +133,7 @@ public class DatabaseInit implements interfejsi.Nagrada, interfejsi.Duplikati {
 
 	public String randomstring(int length) {
 
+
 		final char[] chars = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'Q', 'W', 'E', 'R', 'T', 'Z', 'U', 'I',
 				'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Y', 'X', 'C', 'V', 'B', 'N', 'M' };
 
@@ -131,7 +146,8 @@ public class DatabaseInit implements interfejsi.Nagrada, interfejsi.Duplikati {
 
 	}
 
-	public ArrayList<Integer> rendomLista() {
+	public ArrayList<Integer> randomLista() {
+
 
 		ArrayList<Integer> lista = new ArrayList<Integer>();
 		for (int i = 0; i < 1000; i++) {
@@ -145,6 +161,7 @@ public class DatabaseInit implements interfejsi.Nagrada, interfejsi.Duplikati {
 	}
 
 	public void checkAward() {
+
 
 		try {
 			System.out.print("Unesite kod:");
@@ -184,6 +201,7 @@ public class DatabaseInit implements interfejsi.Nagrada, interfejsi.Duplikati {
 
 	public void update() {
 
+
 		try {
 
 			statement = connect.createStatement();
@@ -215,6 +233,9 @@ public class DatabaseInit implements interfejsi.Nagrada, interfejsi.Duplikati {
 	}
 	
 	public void select () {
+
+
+
 
 		
 		try {

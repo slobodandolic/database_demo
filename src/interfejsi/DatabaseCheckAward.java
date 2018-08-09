@@ -1,6 +1,6 @@
 package interfejsi;
 
-public interface Nagrada {
+public interface DatabaseCheckAward {
 	
 	void checkAward();
 
