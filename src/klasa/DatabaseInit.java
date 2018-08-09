@@ -19,7 +19,7 @@ public class DatabaseInit implements interfejsi.DatabaseCheckAward, interfejsi.D
 	public DatabaseInit() {
 		super();
 	}
-
+	
 	Connection connect = null;
 	Statement statement = null;
 	PreparedStatement preparedStatement = null;

@@ -8,7 +8,7 @@ public class DatabaseMain extends DatabaseInit {
 
 		DatabaseInit db = new DatabaseInit();
 		
-		db.dbConnect();
+		db.dbConnect(); 
 
 		db.fillDbase();
 		
