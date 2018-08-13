@@ -32,30 +32,19 @@ public class DatabaseInit implements interfejsi.DatabaseCheckAward, interfejsi.D
 	public Properties readConfig() {
 
 		Properties prop = new Properties();
-		InputStream input = null;
 
-		try {
+		try (InputStream input = new FileInputStream("config.properties"))
 
-			input = new FileInputStream("config.properties");
-
-			// properties file
+		{
 			prop.load(input);
 
 		} catch (IOException ex) {
 			ex.printStackTrace();
-		} finally {
-			if (input != null) {
-				try {
-					input.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
 		}
-
 		return prop;
-
 	}
+
+	
 
 	public void dbConnect() {
 
