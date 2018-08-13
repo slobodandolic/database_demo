@@ -16,10 +16,6 @@ import java.util.Scanner;
 
 public class DatabaseInit implements interfejsi.DatabaseCheckAward, interfejsi.DatabaseCheckDuplicates, interfejsi.DatabaseCrud {
 
-	public DatabaseInit() {
-		super();
-	}
-	
 	Connection connect = null;
 	Statement statement = null;
 	PreparedStatement preparedStatement = null;
