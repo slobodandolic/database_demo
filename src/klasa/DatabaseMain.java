@@ -12,7 +12,7 @@ public class DatabaseMain extends DatabaseInit {
 
 		db.fillDbase();
 		
-		//db.checkAward();
+		db.checkAward();
 
 		//System.out.println("Prazni kodovi se nalaze na id mestima: " + db.ponovljeniKodovi.toString());
 		

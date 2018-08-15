@@ -14,7 +14,8 @@ import java.util.Properties;
 import java.util.Random;
 import java.util.Scanner;
 
-public class DatabaseInit implements interfejsi.DatabaseCheckAward, interfejsi.DatabaseCheckDuplicates, interfejsi.DatabaseCrud {
+public class DatabaseInit
+		implements interfejsi.DatabaseCheckAward, interfejsi.DatabaseCheckDuplicates, interfejsi.DatabaseCrud {
 
 	Connection connect = null;
 	Statement statement = null;
@@ -44,11 +45,7 @@ public class DatabaseInit implements interfejsi.DatabaseCheckAward, interfejsi.D
 		return prop;
 	}
 
-	
-
 	public void dbConnect() {
-
-
 
 		try {
 			connect = DriverManager.getConnection(dbase, dbuser, dbpass);
@@ -70,9 +67,6 @@ public class DatabaseInit implements interfejsi.DatabaseCheckAward, interfejsi.D
 	}
 
 	public void fillDbase() {
-
-
-
 
 		ArrayList<String> listaKodova = new ArrayList<>();
 
@@ -119,7 +113,6 @@ public class DatabaseInit implements interfejsi.DatabaseCheckAward, interfejsi.D
 
 	public String randomstring(int length) {
 
-
 		final char[] chars = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'Q', 'W', 'E', 'R', 'T', 'Z', 'U', 'I',
 				'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Y', 'X', 'C', 'V', 'B', 'N', 'M' };
 
@@ -134,7 +127,6 @@ public class DatabaseInit implements interfejsi.DatabaseCheckAward, interfejsi.D
 
 	public ArrayList<Integer> randomLista() {
 
-
 		ArrayList<Integer> lista = new ArrayList<Integer>();
 		for (int i = 0; i < 1000; i++) {
 			lista.add(i, i);
@@ -148,20 +140,36 @@ public class DatabaseInit implements interfejsi.DatabaseCheckAward, interfejsi.D
 
 	public void checkAward() {
 
-
 		try {
 			System.out.print("Unesite kod:");
 
 			String kod = sc.next();
-			ResultSet resultSet = statement
-					.executeQuery("select nagrada from dbkodovi.tabela where kod = '" + kod + "'");
-			if (resultSet.next()) {
-				System.out.println("Nagrada za uneti kod " + kod + " je: " + resultSet.getString(1) + ".");
+
+			String sql = "select proveren from dbkodovi.tabela where kod = '" + kod + "'";
+			ResultSet result = statement.executeQuery(sql);
+
+			if (result.next()) {
+
+				if (result.getInt(1) == 0) {
+					ResultSet resultSet = statement
+							.executeQuery("select nagrada from dbkodovi.tabela where kod = '" + kod + "'");
+					if (resultSet.next()) {
+						System.out.println("Nagrada za uneti kod " + kod + " je: " + resultSet.getString(1) + ".");
+
+						statement = connect.createStatement();
+						preparedStatement = connect
+								.prepareStatement("update dbkodovi.tabela set proveren = ? where kod = '" + kod + "'");
+						preparedStatement.setInt(1, 1);
+						preparedStatement.executeUpdate();
+						// sc.close();
+					}
+				} else {
+					System.out.println("Kod je vec iskoriscen!");
+				}
 			} else {
 				System.out.println("Pogresan kod. Pokusajte ponovo.");
 			}
 
-			// sc.close();
 		} catch (Exception e) {
 			System.out.println("Ne radi provera kodova");
 		}
@@ -187,16 +195,16 @@ public class DatabaseInit implements interfejsi.DatabaseCheckAward, interfejsi.D
 
 	public void update() {
 
-
 		try {
 
 			statement = connect.createStatement();
-						
+
 			System.out.print("Unesite id koji zelite da dodate: ");
 			int id = sc.nextInt();
 
-			preparedStatement = connect.prepareStatement("update dbkodovi.tabela set kod = ?, nagrada = ? where id = " + id + "");
-						
+			preparedStatement = connect
+					.prepareStatement("update dbkodovi.tabela set kod = ?, nagrada = ? where id = " + id + "");
+
 			sc.nextLine();
 
 			System.out.print("Unesite kod: ");
@@ -217,83 +225,75 @@ public class DatabaseInit implements interfejsi.DatabaseCheckAward, interfejsi.D
 		}
 
 	}
-	
-	public void select () {
 
+	public void select() {
 
-
-
-		
 		try {
-						
+
 			System.out.print("Unesite id koji zelite da pogledate: ");
-			int id = sc.nextInt();						
+			int id = sc.nextInt();
 			sc.nextLine();
 
 			String sql = "select * from dbkodovi.tabela where id=" + id + "";
-			 
+
 			ResultSet result = statement.executeQuery(sql);
-			 
-			if (result.next()){
-			    String kod = result.getString(2);
-			    String nagrada = result.getString(3);
-			    
-				System.out.println("Uneli ste id: " + id + "." + "Kod za navedeni id je: " + kod + " a nagrada je: " + nagrada);
-			    
+
+			if (result.next()) {
+				String kod = result.getString(2);
+				String nagrada = result.getString(3);
+
+				System.out.println(
+						"Uneli ste id: " + id + "." + "Kod za navedeni id je: " + kod + " a nagrada je: " + nagrada);
+
 			} else {
 				System.out.println("Nepostojeci ID");
 			}
-			
 
-			
 		} catch (Exception e) {
 			System.out.println("Nepostojeci kod");
-			
+
 		}
 
-		
 	}
-	
-	public void delete () {
+
+	public void delete() {
 
 		try {
-			
+
 			System.out.print("Unesite id koji zelite da obrisete: ");
-			int id = sc.nextInt();						
+			int id = sc.nextInt();
 			sc.nextLine();
 
 			String sql = "delete from dbkodovi.tabela where id = " + id + "";
-			 
+
 			preparedStatement = connect.prepareStatement(sql);
 			preparedStatement.executeUpdate();
 
 			System.out.println("Uspesno obrisan unos.");
-			
+
 		} catch (Exception e) {
 			System.out.println("Nepostojeci kod");
-			
+
 		}
 
 	}
-	
-	public void insert () {
-		
-		
+
+	public void insert() {
+
 		try {
 
 			statement = connect.createStatement();
-						
-			
+
 			String sql = "insert into  dbkodovi.tabela values (?, ?, ?)";
 
 			preparedStatement = connect.prepareStatement(sql);
-						
+
 			System.out.print("Unesite id koji zelite da dodate: ");
 			int id = sc.nextInt();
-			
+
 			preparedStatement.setInt(1, id);
 			sc.nextLine();
-			
+
 			System.out.print("Unesite kod: ");
 			String kod = sc.nextLine();
 			preparedStatement.setString(2, kod);
@@ -311,5 +311,5 @@ public class DatabaseInit implements interfejsi.DatabaseCheckAward, interfejsi.D
 		}
 
 	}
-	
+
 }
