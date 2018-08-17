@@ -1,6 +1,6 @@
 package interfejsi;
 
-public interface DatabaseCrud {
+public interface DatabaseCRUD {
 	
 	void insert ();
 	

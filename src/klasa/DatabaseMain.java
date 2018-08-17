@@ -7,27 +7,27 @@ public class DatabaseMain extends DatabaseInit {
 	public static void main(String[] args) {
 
 		DatabaseInit db = new DatabaseInit();
-		
-		db.dbConnect(); 
+
+		db.dbConnect();
 
 		db.fillDbase();
-		
+
 		db.checkAward();
 
-		//System.out.println("Prazni kodovi se nalaze na id mestima: " + db.ponovljeniKodovi.toString());
-		
-		//db.checkDuplicates();
-		
-		//db.update();
-		
-		//db.select();
-		
-		//db.delete();
-		
-		//db.insert();
 		
 		
 		
+		
+		
+		//CRUD metode rade na tabeli kodova tj. dbkodovi.tabela
+		// db.update();
+
+		// db.select();
+
+		// db.delete();
+
+		// db.insert();
+
 		try {
 			db.connect.close();
 		} catch (SQLException e) {
@@ -35,8 +35,6 @@ public class DatabaseMain extends DatabaseInit {
 			e.printStackTrace();
 		}
 		db.sc.close();
-	
-	
 
 	}
 

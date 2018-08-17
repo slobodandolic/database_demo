@@ -102,7 +102,7 @@ class DatabaseTest {
 
 /*
  * 
- * ***ZA OVE TREBA MOCK***
+ * ***ZA OVE TREBA MOCKITO***
  * 
  * @Test void testUpdate() { fail("Not yet implemented"); }
  * 
