@@ -13,6 +13,8 @@ public class DatabaseMain extends DatabaseInit {
 		db.fillDbase();
 
 		db.checkAward();
+		
+		// db.selectLast();
 
 		
 		

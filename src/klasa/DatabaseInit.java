@@ -103,6 +103,7 @@ public class DatabaseInit
 
 	public void fillDbase() {
 
+
 		ArrayList<String> listaKodova = new ArrayList<>();
 
 		ArrayList<Integer> lista = randomLista();
@@ -486,8 +487,33 @@ public class DatabaseInit
 		return lista;
 	}
 
+	
+	public void selectLast() {
+		
+	//	SELECT * FROM `table_name` WHERE id=(SELECT MAX(id) FROM `table_name`);
+		
+		try {
+
+			String sql = "select * from dbkodovi.tabela where id = (select max(id) from dbkodovi.tabela)";
+
+			ResultSet result = statement.executeQuery(sql);
+
+			if (result.next()) {
+				int kod = result.getInt(1);
+
+				System.out.println("Poslednji popunjen red u tabeli je: " + kod);
+
+			} else {
+				System.out.println("Greska selectLast sql");
+			}
+		} catch (Exception e) {
+			System.out.println("Nepostojeci kod");
+		}
+
+	}
 	@Override
 	public void checkDuplicates() {
+
 
 		try {
 
